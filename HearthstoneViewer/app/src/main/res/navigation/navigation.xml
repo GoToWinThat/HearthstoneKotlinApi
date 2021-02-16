@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/navigation_cards">
+
+    <fragment
+        android:id="@+id/navigation_cards"
+        android:name="mobile.hearthstoneviewer.ui.hscards.CardsFragment"
+        android:label="Cards"
+        tools:layout="@layout/fragment_cards" />
+    <fragment
+        android:id="@+id/navigation_favourite"
+        android:name="mobile.hearthstoneviewer.ui.favourite.FavouriteFragment"
+        android:label="Favourite"
+        tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/navigation_decks"
+        android:name="mobile.hearthstoneviewer.ui.hsdecks.DecksFragment"
+        android:label="Decks"
+        tools:layout="@layout/fragment_decks" />
+</navigation>
