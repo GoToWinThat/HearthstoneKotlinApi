@@ -1,12 +1,36 @@
 package mobile.hearthstoneviewer.ui.hscards
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import mobile.hearthstoneviewer.api.IApiCaller
+import mobile.hearthstoneviewer.api.repository.CardRepository
+import mobile.hearthstoneviewer.model.entities.Card
+import retrofit2.awaitResponse
 
-class CardsViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "Karty w grze"
+class CardsViewModel(application: Application) : AndroidViewModel(application)
+{
+    private val repository : CardRepository = CardRepository(IApiCaller.getApiCaller())
+
+    fun getCards()
+    {
+        viewModelScope.launch(Dispatchers.IO)
+        {
+            val response = repository.getCards().awaitResponse()
+            if (response.isSuccessful)
+            {
+                val data = response.body()!!
+                cardsList.postValue(data.cards) 
+            }
+        }
+
+
     }
-    val text: LiveData<String> = _text
+    companion object
+    {
+        var cardsList = MutableLiveData<List<Card>>()
+    }
+
 }
