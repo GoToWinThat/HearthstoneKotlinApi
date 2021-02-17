@@ -8,6 +8,7 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mobile.hearthstoneviewer.R
@@ -26,8 +27,10 @@ class CardsFragment : Fragment()
 
         cardsViewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
         viewManager = LinearLayoutManager(requireContext())
-        cardListAdapter = CardListAdapter(CardsViewModel.cardsList)
-
+        cardListAdapter = CardListAdapter(CardsViewModel.cardsList){
+            CardsViewModel.selectedCard = it
+            view?.findNavController()?.navigate(R.id.cardsDetailsFragment) //DO POPRAWY
+        }
 
         CardsViewModel.cardsList.observe(viewLifecycleOwner, {
             cardListAdapter.notifyDataSetChanged()

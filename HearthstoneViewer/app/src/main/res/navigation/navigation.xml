@@ -20,4 +20,13 @@
         android:name="mobile.hearthstoneviewer.ui.hsdecks.DecksFragment"
         android:label="Decks"
         tools:layout="@layout/fragment_decks" />
+    <fragment
+        android:id="@+id/cardsDetailsFragment"
+        android:name="mobile.hearthstoneviewer.ui.hscards.CardsDetailsFragment"
+        android:label="fragment_card_details"
+        tools:layout="@layout/fragment_card_details" >
+        <action
+            android:id="@+id/action_cardsDetailsFragment_to_navigation_cards"
+            app:destination="@id/navigation_cards" />
+    </fragment>
 </navigation>

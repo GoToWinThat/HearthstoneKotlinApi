@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import mobile.hearthstoneviewer.api.IApiCaller
 import mobile.hearthstoneviewer.api.repository.CardRepository
 import mobile.hearthstoneviewer.model.entities.Card
@@ -25,11 +26,11 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
                 cardsList.postValue(data.cards) 
             }
         }
-
-
     }
+
     companion object
     {
+        lateinit var selectedCard: Card
         var cardsList = MutableLiveData<List<Card>>()
     }
 

@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import mobile.hearthstoneviewer.R
 import mobile.hearthstoneviewer.model.entities.Card
 
-class  CardListAdapter(var cards: LiveData<List<Card>>)
-    : RecyclerView.Adapter<CardListAdapter.Holder>(), SectionIndexer
+class  CardListAdapter(var cards: LiveData<List<Card>>, var clickCallback: ((d: Card) -> Unit)) :RecyclerView.Adapter<CardListAdapter.Holder>(), SectionIndexer
 {
     class Holder(view: View): RecyclerView.ViewHolder(view)
 
@@ -30,16 +29,16 @@ class  CardListAdapter(var cards: LiveData<List<Card>>)
     override fun onBindViewHolder(holder: Holder, position: Int)
     {
         val textViewTitle = holder.itemView.findViewById<TextView>(R.id.textCardName)
-        //val rowCard = holder.itemView.findViewById<LinearLayout>(R.id.row_card)
+        val rowCard = holder.itemView.findViewById<LinearLayout>(R.id.row_card)
 
-        if(cards.value?.get(position)?.name != "")
-        {
+        if(cards.value?.get(position)?.name != "") {
             textViewTitle.text =  cards.value?.get(position)?.name
-            val test = 2
+            rowCard.setOnClickListener {
+                clickCallback(cards.value?.get(position)!!)
+            }
         }
-        else
-        {
-            textViewTitle.text = "Empty"
+        else{
+            textViewTitle.text = "empty"
         }
 
     }

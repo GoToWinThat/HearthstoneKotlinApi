@@ -1,5 +1,8 @@
 package mobile.hearthstoneviewer.model.entities
 
+import com.google.gson.annotations.Expose
+import mobile.hearthstoneviewer.ui.hscards.CardsViewModel
+
 data class Card(
     val id: Int,
     val classId: Int,
@@ -10,5 +13,7 @@ data class Card(
     var name: String,
     var text: String,
     var image: String,
-    var cropImage: String
-    )
+    var cropImage: String,
+    @Expose(deserialize = false)
+    var favorite: Boolean)
+
