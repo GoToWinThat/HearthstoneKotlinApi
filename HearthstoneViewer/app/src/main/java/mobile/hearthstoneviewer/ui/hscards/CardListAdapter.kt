@@ -30,11 +30,12 @@ class  CardListAdapter(var cards: LiveData<List<Card>>)
     override fun onBindViewHolder(holder: Holder, position: Int)
     {
         val textViewTitle = holder.itemView.findViewById<TextView>(R.id.textCardName)
-        val rowCard = holder.itemView.findViewById<LinearLayout>(R.id.row_card)
+        //val rowCard = holder.itemView.findViewById<LinearLayout>(R.id.row_card)
 
         if(cards.value?.get(position)?.name != "")
         {
             textViewTitle.text =  cards.value?.get(position)?.name
+            val test = 2
         }
         else
         {
