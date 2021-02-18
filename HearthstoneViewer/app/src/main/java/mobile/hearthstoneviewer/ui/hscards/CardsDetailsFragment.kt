@@ -95,7 +95,8 @@ class CardsDetailsFragment : Fragment() {
 
     }
 
-    companion object {
+    companion object
+    {
         @JvmStatic
         fun newInstance() = CardsDetailsFragment()
     }

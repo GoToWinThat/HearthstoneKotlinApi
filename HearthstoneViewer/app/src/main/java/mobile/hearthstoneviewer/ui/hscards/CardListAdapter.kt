@@ -31,11 +31,10 @@ class  CardListAdapter(var cards: LiveData<List<Card>>, var clickCallback: ((d: 
         val textViewTitle = holder.itemView.findViewById<TextView>(R.id.textCardName)
         val rowCard = holder.itemView.findViewById<LinearLayout>(R.id.row_card)
 
-        if(cards.value?.get(position)?.name != "") {
+        if(cards.value?.get(position)?.name != "")
+        {
             textViewTitle.text =  cards.value?.get(position)?.name
-            rowCard.setOnClickListener {
-                clickCallback(cards.value?.get(position)!!)
-            }
+            rowCard.setOnClickListener { clickCallback(cards.value?.get(position)!!) }
         }
         else{
             textViewTitle.text = "empty"
