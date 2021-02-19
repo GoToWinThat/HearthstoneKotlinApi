@@ -8,9 +8,11 @@ import android.widget.LinearLayout
 import android.widget.SectionIndexer
 import android.widget.TextView
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import mobile.hearthstoneviewer.R
 import mobile.hearthstoneviewer.model.entities.Card
+
 
 class  CardListAdapter(var cards: LiveData<List<Card>>, var clickCallback: ((d: Card) -> Unit)) :RecyclerView.Adapter<CardListAdapter.Holder>(), SectionIndexer
 {
@@ -34,7 +36,8 @@ class  CardListAdapter(var cards: LiveData<List<Card>>, var clickCallback: ((d: 
         if(cards.value?.get(position)?.name != "")
         {
             textViewTitle.text =  cards.value?.get(position)?.name
-            rowCard.setOnClickListener { clickCallback(cards.value?.get(position)!!) }
+            rowCard.setOnClickListener { clickCallback(cards.value?.get(position)!!)
+            }
         }
         else{
             textViewTitle.text = "empty"

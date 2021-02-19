@@ -25,7 +25,6 @@ class CardsDetailsFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
         lifecycleScope.launch {
-          //  viewModel.addDrinkToHistory(CardsViewModel.selectedCard)
         }
 
         // Inflate the layout for this fragment
@@ -36,63 +35,84 @@ class CardsDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var classname = "heg";
+        var classname = "Druid";
         when(CardsViewModel.selectedCard.classId)
         {
             2 -> classname = "Druid"
-            3 -> classname = "Hunter"
-            4 -> classname = "Mage"
-            5 -> classname = "Paladin"
-            6 -> classname = "Priest"
-            7 -> classname = "Rogue"
-            8 -> classname = "Shaman"
-            9 -> classname = "Warlock"
-            10 -> classname = "Warrior"
-            14 -> classname = "Demon Hunter"
+            3 -> classname = "Łowca"
+            4 -> classname = "Mag"
+            5 -> classname = "Paladyn"
+            6 -> classname = "Kapłan"
+            7 -> classname = "Łotr"
+            8 -> classname = "Szaman"
+            9 -> classname = "Czarnoksiężnik"
+            10 -> classname = "Wojownik"
+            14 -> classname = "Łowca Demonów"
 
         }
-        textViewDrinkNameD.text = CardsViewModel.selectedCard.name
-      textViewClassIdName.text = classname
+        var cardRarity = "Rzadka"
+        when (CardsViewModel.selectedCard.rarityId)
+        {
+            1 -> cardRarity = "Pospolita"
+            2 -> cardRarity = "Darmowa"
+            3 -> cardRarity = "Rzadka"
+            4 -> cardRarity = "Epicka"
+            5 -> cardRarity = "Legendarna"
+        }
+        var cardType = "Broń"
+        when(CardsViewModel.selectedCard.cardTypeId)
+        {
+            3 -> cardType = "Postać"
+            4 -> cardType = "Stronnik"
+            5 -> cardType = "Czar"
+        }
 
-        Picasso.get().load(CardsViewModel.selectedCard.image).resize(700, 700)
-            .centerCrop()
+        textViewCategory.text = CardsViewModel.selectedCard.name
+        textViewClassIdName.text = "Klasa postaci: " + classname +
+                "\nTyp karty: "  +cardType +
+                "\nRzadkość karty: "  +cardRarity +
+                "\nŻycie: " + CardsViewModel.selectedCard.health +
+                "\nAtak: " + CardsViewModel.selectedCard.attack +
+                "\nKoszt many: " + CardsViewModel.selectedCard.manaCost
+
+
+        Picasso.get().load(CardsViewModel.selectedCard.image).resize(600, 700)
             .into(imageView)
 
 
-//        lifecycleScope.launch {
-//            if (viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedDrink)) {
-//                buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_24_kivi)
-//                CardsViewModel.selectedCard.favorite = true
-//                textViewAddToFavorites.text = getString(R.string.remove_from_favorite)
-//            } else {
-//                buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24_kici)
-//                CardsViewModel.selectedCard.favorite = false
-//                textViewAddToFavorites.text = getString(R.string.add_to_favorite)
-//            }
-//        }
-//
-//
-//        buttonAddToFavorites.setOnClickListener {
-//            lifecycleScope.launch {
-//                if (viewModel.checkIfDrinkIsFavourite(DrinkViewModel.selectedDrink)) {
-//                    buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24_kici)
-//                    DrinkViewModel.selectedDrink.favorite = false
-//                    textViewAddToFavorites.text = getString(R.string.add_to_favorite)
-//                    viewModel.deleteDrinkFromFavourites(DrinkViewModel.selectedDrink)
-//
-//                } else if (!viewModel.checkIfDrinkIsFavourite(DrinkViewModel.selectedDrink)) {
-//                    buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_24_kivi)
-//                    DrinkViewModel.selectedDrink.favorite = true
-//                    textViewAddToFavorites.text = getString(R.string.remove_from_favorite)
-//                    viewModel.addDrinkToFavourite(DrinkViewModel.selectedDrink)
-//                }
-//            }
-//        }
+        lifecycleScope.launch {
+            if (viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedCard)) {
+                buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_24_kivi)
+                CardsViewModel.selectedCard.favorite = true
+                textViewAddToFavorites.text = "Usuń z ulubionych"
+            } else {
+                buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24_kici)
+                CardsViewModel.selectedCard.favorite = false
+                textViewAddToFavorites.text = "Dodaj do ulubionych"
+            }
+        }
 
-//        buttonBack.setOnClickListener {
-//            it.findNavController().navigate(R.id.action_drinkDetailsFragment_to_searchFragment)
-//        }
 
+        buttonAddToFavorites.setOnClickListener {
+            lifecycleScope.launch {
+                if (viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedCard)) {
+                    buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24_kici)
+                    CardsViewModel.selectedCard.favorite = false
+                    textViewAddToFavorites.text = "Dodaj do ulubionych"
+                    viewModel.deleteCardFromFavourites(CardsViewModel.selectedCard)
+
+                } else if (!viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedCard)) {
+                    buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_24_kivi)
+                    CardsViewModel.selectedCard.favorite = true
+                    textViewAddToFavorites.text = "Usuń z ulubionych"
+                    viewModel.addCardToFavourite(CardsViewModel.selectedCard)
+                }
+            }
+        }
+
+        buttonBack.setOnClickListener {
+            it.findNavController().navigate(R.id.action_cardsDetailsFragment_to_navigation_cards)
+        }
     }
 
     companion object

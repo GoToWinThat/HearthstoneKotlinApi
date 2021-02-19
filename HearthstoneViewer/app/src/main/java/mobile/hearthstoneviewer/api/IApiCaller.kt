@@ -11,16 +11,18 @@ interface IApiCaller
 {
 
     //CARDS
-    @GET("cards?$accessToken&$localization")
+    @GET("cards?$accessToken&$localization&$pageSize")
     fun getCards() : Call<CardListResponse>
 
     companion object
     {
-        private const val accessToken: String = "access_token=USUzOmN6B0sn6t5zhdomNrYzq69KfGyUUe"
+        private const val accessToken: String = "access_token=USXXV7g9CAxJYtUhNMD1CMQZLuQlmwgG6v"
         private const val localization: String ="locale=pl_PL"
-        private const val baseUrl = "https://us.api.blizzard.com/hearthstone/"
+        private const val pageSize: String = "pageSize=1024"
+        const val baseUrl = "https://us.api.blizzard.com/hearthstone/"
 
-        private var instance : IApiCaller? = null
+
+        var instance : IApiCaller? = null
 
         fun getApiCaller() : IApiCaller
         {

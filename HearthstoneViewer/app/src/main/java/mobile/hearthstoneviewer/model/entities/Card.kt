@@ -6,8 +6,9 @@ import mobile.hearthstoneviewer.ui.hscards.CardsViewModel
 data class Card(
     val id: Int,
     val classId: Int,
+    val cardTypeId: Int,
     val rarityId: Int,
-    val heath: Int,
+    val health: Int,
     val attack: Int,
     val manaCost: Int,
     var name: String,
@@ -16,4 +17,5 @@ data class Card(
     var cropImage: String,
     @Expose(deserialize = false)
     var favorite: Boolean)
-
+class CardList : ArrayList<Card>() {
+}

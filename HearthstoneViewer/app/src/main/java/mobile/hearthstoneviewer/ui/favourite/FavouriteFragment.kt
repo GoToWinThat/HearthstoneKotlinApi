@@ -1,3 +1,4 @@
+
 package mobile.hearthstoneviewer.ui.favourite
 
 import android.os.Bundle
@@ -20,9 +21,9 @@ class FavouriteFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_favourite, container, false)
 
-        val textView: TextView = view.findViewById(R.id.text_favourite)
-
-        favouriteViewModel.text.observe(viewLifecycleOwner, Observer { textView.text = it })
+//        val textView: TextView = view.findViewById(R.id.text_favourite)
+//
+//        favouriteViewModel.text.observe(viewLifecycleOwner, Observer { textView.text = it })
         return view
     }
 }
