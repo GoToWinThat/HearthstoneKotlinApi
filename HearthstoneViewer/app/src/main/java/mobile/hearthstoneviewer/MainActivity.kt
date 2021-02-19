@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity()
                             setOf(
                                 R.id.navigation_cards, R.id.navigation_decks, R.id.navigation_favourite))
 
-        setupActionBarWithNavController(navController, appBarConfiguration)
+//        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         cardsViewModel = ViewModelProvider(this).get(CardsViewModel::class.java)

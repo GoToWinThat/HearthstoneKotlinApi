@@ -41,7 +41,7 @@ class FavouriteFavouriteCardsFragment :Fragment() {
         })
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourite_cards, container, false)
+        return inflater.inflate(R.layout.fragment_favourite_favourite_cards, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

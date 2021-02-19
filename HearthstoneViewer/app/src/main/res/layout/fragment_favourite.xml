@@ -11,6 +11,8 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerFavourite"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="119dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
