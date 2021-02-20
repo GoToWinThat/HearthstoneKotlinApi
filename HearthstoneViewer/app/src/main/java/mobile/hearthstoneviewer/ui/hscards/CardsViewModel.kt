@@ -11,6 +11,7 @@ import mobile.hearthstoneviewer.api.repository.CardRepository
 import mobile.hearthstoneviewer.model.ApplicationDatabase
 import mobile.hearthstoneviewer.model.entities.*
 import mobile.hearthstoneviewer.model.repositories.FavouriteCardRepository
+import mobile.hearthstoneviewer.model.repositories.HistoryRepository
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,7 +20,11 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
 {
 
     var listOfCards = MutableLiveData<CardList>()
+   // var listOfCards = MutableLiveData<List<Card>>()
 
+
+    private val historyRepository =
+        HistoryRepository(ApplicationDatabase.getDatabase(application).historyDao())
     private val repository : CardRepository = CardRepository(IApiCaller.getApiCaller())
     private val favouriteCardRepository = FavouriteCardRepository(ApplicationDatabase.getDatabase(application).favouriteCardDao())
     fun getCards()
@@ -93,6 +98,24 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
 //            }
         }
 
+    fun getRecentCards() {
+
+        GlobalScope.launch(Dispatchers.IO) {
+            var recentCards = CardList()
+            var history = historyRepository.getAllHistory()
+
+            history.forEach { history ->
+                run {
+                    var drink =
+                        cardsList.value?.find { card -> card.id == history.cardId }
+                    drink?.let { recentCards.add(it) }
+                }
+            }
+
+            listOfCards.postValue(recentCards)
+        }
+
+    }
 
 
     companion object

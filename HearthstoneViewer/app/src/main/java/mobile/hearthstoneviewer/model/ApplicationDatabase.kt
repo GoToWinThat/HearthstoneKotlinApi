@@ -6,11 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import mobile.hearthstoneviewer.model.dao.CardDao
 import mobile.hearthstoneviewer.model.dao.FavouriteCardDao
+import mobile.hearthstoneviewer.model.dao.HistoryDao
 import mobile.hearthstoneviewer.model.entities.FavouriteCard
+import mobile.hearthstoneviewer.model.entities.History
 import mobile.hearthstoneviewer.model.entities.LocalCard
 
 @Database(
     entities = [
+        History::class,
         LocalCard::class,
         FavouriteCard::class],
     version = 3,
@@ -18,6 +21,7 @@ import mobile.hearthstoneviewer.model.entities.LocalCard
 )
 abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun cardDao(): CardDao
+    abstract fun historyDao(): HistoryDao
     abstract fun favouriteCardDao(): FavouriteCardDao
 
     companion object {
