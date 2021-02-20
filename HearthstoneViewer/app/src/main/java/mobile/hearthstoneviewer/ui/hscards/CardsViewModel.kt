@@ -1,9 +1,7 @@
 package mobile.hearthstoneviewer.ui.hscards
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
-import androidx.room.Database
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

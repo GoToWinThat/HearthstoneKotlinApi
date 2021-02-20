@@ -101,7 +101,8 @@ class CardsDetailsFragment : Fragment() {
                     textViewAddToFavorites.text = "Dodaj do ulubionych"
                     viewModel.deleteCardFromFavourites(CardsViewModel.selectedCard)
 
-                } else if (!viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedCard)) {
+                } else if (!viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedCard))
+                {
                     buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_24_kivi)
                     CardsViewModel.selectedCard.favorite = true
                     textViewAddToFavorites.text = "Usuń z ulubionych"

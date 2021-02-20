@@ -20,6 +20,4 @@
         android:textColor="#FFFFFF"
         android:textSize="16dp"
         android:background="@drawable/tv_background"/>
-
-
 </LinearLayout>
