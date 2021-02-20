@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class CardsViewModel(application: Application) : AndroidViewModel(application)
 {
 
-    var listOfCards = MutableLiveData<CardList>()
+    var listOfCards = MutableLiveData<List<Card>>()
 
     private val repository : CardRepository = CardRepository(IApiCaller.getApiCaller())
     private val favouriteCardRepository = FavouriteCardRepository(ApplicationDatabase.getDatabase(application).favouriteCardDao())
@@ -77,20 +77,6 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
         IApiCaller.instance = apiCaller
         apiCaller
 
-//        GlobalScope.launch(Dispatchers.IO) {
-//
-//            val response = api.getDrinkById(id).awaitResponse()
-//
-//            if (response.isSuccessful) {
-//
-//                val data = response.body()
-//                if (data != null) {
-//                    doneCallback(data)
-//                }
-//                ///Log.d("myTag", listOfDrinks.value.toString())
-//            } else {
-//                Log.d("api-connection", "response failed")
-//            }
         }
 
 
