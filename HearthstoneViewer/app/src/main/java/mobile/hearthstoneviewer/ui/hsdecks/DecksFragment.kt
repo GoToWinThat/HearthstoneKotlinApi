@@ -37,7 +37,7 @@ class DecksFragment : Fragment() {
         viewManager = LinearLayoutManager(requireContext())
         deckListAdapter = DeckListAdapter(decksViewModel.listOfDecks){
             DecksViewModel.selectedDeck = it
-            //view?.findNavController()?.navigate(R.id.navigation_decks)
+            view?.findNavController()?.navigate(R.id.action_navigation_decks_to_deckListCardsFragment)
         }
 
         decksViewModel.listOfDecks.observe(viewLifecycleOwner, {

@@ -40,11 +40,13 @@ class DecksViewModel (application: Application) : AndroidViewModel(application)
                 }
             }
             listOfDecks.postValue(decks)
+            allDecks.postValue(decks)
 
         }
     }
     companion object
     {
         lateinit var selectedDeck: Deck
+        var allDecks = MutableLiveData<List<Deck>>()
     }
 }

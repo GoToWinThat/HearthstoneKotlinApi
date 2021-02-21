@@ -21,7 +21,7 @@ interface IApiCaller
 
     companion object
     {
-        private const val accessToken: String = "access_token=USMaSlx40IDBOpTqSCBJN4OseXku5VHTl3"
+        private const val accessToken: String = "access_token=USKPLpZiNHLbaZfK50YUmlH13TNmZm1BFJ"
         private const val localization: String ="locale=pl_PL"
         private const val pageSize: String = "pageSize=1024"
         const val baseUrl = "https://us.api.blizzard.com/hearthstone/"
