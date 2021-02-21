@@ -1,12 +1,14 @@
 package mobile.hearthstoneviewer.api
 
 import mobile.hearthstoneviewer.api.responses.CardListResponse
+import mobile.hearthstoneviewer.model.entities.CardList
 import mobile.hearthstoneviewer.model.entities.Deck
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.util.jar.Attributes
 
 
 interface IApiCaller
@@ -19,11 +21,16 @@ interface IApiCaller
     @GET("cards?$accessToken&$localization&$pageSize")
     fun getCards() : Call<CardListResponse>
 
+    @GET("cards?$accessToken&$localization&$pageSize&$sort&$textFilter")
+    fun getDrinksByName(@Query("s") name: String): Call<CardList>
+
     companion object
     {
-        private const val accessToken: String = "access_token=USMaSlx40IDBOpTqSCBJN4OseXku5VHTl3"
+        private const val accessToken: String = "access_token=USNNU2f92AUfVGztY8njhZB7kK8S5TSdtt"
         private const val localization: String ="locale=pl_PL"
         private const val pageSize: String = "pageSize=1024"
+        private const val sort: String = "sort=name"
+        private const val textFilter: String = "textFilter=Potwo"
         const val baseUrl = "https://us.api.blizzard.com/hearthstone/"
 
 

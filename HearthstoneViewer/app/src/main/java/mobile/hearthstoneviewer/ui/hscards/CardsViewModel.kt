@@ -1,6 +1,7 @@
 package mobile.hearthstoneviewer.ui.hscards
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -105,6 +106,30 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
 
     }
 
+    fun getCardsByName(name: String) {
+        var tmpList = CardList()
+        val apiCaller = Retrofit.Builder()
+                .baseUrl(IApiCaller.baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(IApiCaller::class.java)
+        IApiCaller.instance = apiCaller
+        apiCaller
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val response = apiCaller.getDrinksByName(name).awaitResponse()
+
+            if (response.isSuccessful) {
+                var data = response.body()
+                if (data != null) {
+                    //Log.d("Size", data.size.toString())
+                    listOfCards.postValue(data!!)
+                }
+            } else {
+                Log.d("api-connection", "response failed")
+            }
+        }
+    }
     //DO TESTÓW
     fun getCardsById(id: Int, doneCallback: ((d: Card) -> Unit)) {
 
@@ -117,9 +142,6 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
         apiCaller
 
         }
-
-
-
     companion object
     {
         lateinit var selectedCard: Card

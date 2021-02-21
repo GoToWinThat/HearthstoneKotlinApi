@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_cards_to_cardsDetailsFragment"
             app:destination="@id/cardsDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_cards_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_favourite"
@@ -39,6 +42,9 @@
         <action
             android:id="@+id/action_cardsDetailsFragment_to_drinkHistoryFragment"
             app:destination="@id/cardHistoryFragment" />
+        <action
+            android:id="@+id/action_cardsDetailsFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -55,6 +61,30 @@
         android:label="CardHistoryFragment">
         <action
             android:id="@+id/action_drinkHistoryFragment_to_cardsDetailsFragment"
+            app:destination="@id/cardsDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="mobile.hearthstoneviewer.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_cardsDetailsFragment"
+            app:destination="@id/cardsDetailsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="mobile.hearthstoneviewer.ui.search.SearchResultsFragment"
+        android:label="fragment_search_results"
+        tools:layout="@layout/fragment_search_results" >
+        <action
+            android:id="@+id/action_searchResultsFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_cardsDetailsFragment"
             app:destination="@id/cardsDetailsFragment" />
     </fragment>
 </navigation>
