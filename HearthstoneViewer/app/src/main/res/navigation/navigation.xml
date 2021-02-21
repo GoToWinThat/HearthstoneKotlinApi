@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_cardsDetailsFragment_to_navigation_cards"
             app:destination="@id/navigation_cards" />
+        <action
+            android:id="@+id/action_cardsDetailsFragment_to_drinkHistoryFragment"
+            app:destination="@id/cardHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -44,6 +47,14 @@
         tools:layout="@layout/card_history_fragment" >
         <action
             android:id="@+id/action_historyFragment_to_cardsDetailsFragment"
+            app:destination="@id/cardsDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardHistoryFragment"
+        android:name="mobile.hearthstoneviewer.ui.history.DrinkHistoryFragment"
+        android:label="CardHistoryFragment">
+        <action
+            android:id="@+id/action_drinkHistoryFragment_to_cardsDetailsFragment"
             app:destination="@id/cardsDetailsFragment" />
     </fragment>
 </navigation>

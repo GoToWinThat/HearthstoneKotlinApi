@@ -21,6 +21,7 @@ import mobile.hearthstoneviewer.model.entities.LocalCard
 )
 abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun cardDao(): CardDao
+    abstract fun historyDao(): HistoryDao
     abstract fun favouriteCardDao(): FavouriteCardDao
     abstract fun historyDao(): HistoryDao
 
