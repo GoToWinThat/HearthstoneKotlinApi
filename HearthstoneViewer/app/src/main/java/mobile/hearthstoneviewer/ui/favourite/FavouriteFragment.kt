@@ -28,14 +28,11 @@ class FavouriteFragment : Fragment() {
 
         cardsViewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
         viewManager = LinearLayoutManager(requireContext())
-        cardListAdapter = CardListAdapter(cardsViewModel.listOfCards) { it ->
-            cardsViewModel.getCardsById(it.id) { d ->
-                CardsViewModel.selectedCard = d
-                view?.findNavController()
-                        ?.navigate(R.id.action_favouriteCardsFragment_to_cardsDetailsFragment)
-            }
-
+        cardListAdapter = CardListAdapter(cardsViewModel.listOfCards) {
+            CardsViewModel.selectedCard = it
+            view?.findNavController()?.navigate(R.id.action_navigation_favourite_to_cardsDetailsFragment)
         }
+
 
         cardsViewModel.getFavouriteCards()
 

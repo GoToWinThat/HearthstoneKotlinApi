@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mobile.hearthstoneviewer.api.IApiCaller
 import mobile.hearthstoneviewer.api.repository.CardRepository
+import mobile.hearthstoneviewer.api.repository.DeckRepository
 import mobile.hearthstoneviewer.model.ApplicationDatabase
 import mobile.hearthstoneviewer.model.entities.*
 import mobile.hearthstoneviewer.model.repositories.FavouriteCardRepository
@@ -21,12 +22,18 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
     var listOfCards = MutableLiveData<List<Card>>()
 
     private val repository : CardRepository = CardRepository(IApiCaller.getApiCaller())
+   // private val repository2 : DeckRepository = DeckRepository(IApiCaller.getApiCaller())
     private val favouriteCardRepository = FavouriteCardRepository(ApplicationDatabase.getDatabase(application).favouriteCardDao())
     fun getCards()
     {
         viewModelScope.launch(Dispatchers.IO)
         {
             val response = repository.getCards().awaitResponse()
+           // val testsoc = repository2.getDeck("AAECAZ8FCIetA/y4A5XNA4/OA8PRA5vYA/zeA73hAwunCJupA/u4A/O7A/7RA4fUA/7bA/neA/TfA5HkA5LkAwA=").awaitResponse()
+           // if (testsoc.isSuccessful)
+           // {
+           //     val data = response.body()!!
+           // }
             if (response.isSuccessful)
             {
                 val data = response.body()!!

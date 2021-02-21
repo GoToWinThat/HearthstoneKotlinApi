@@ -1,14 +1,19 @@
 package mobile.hearthstoneviewer.api
 
 import mobile.hearthstoneviewer.api.responses.CardListResponse
+import mobile.hearthstoneviewer.model.entities.Deck
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface IApiCaller
 {
+    //CARDS
+    @GET("deck?$localization&$accessToken")
+    fun getDeck(@Query("code") code: String): Call<Deck>
 
     //CARDS
     @GET("cards?$accessToken&$localization&$pageSize")

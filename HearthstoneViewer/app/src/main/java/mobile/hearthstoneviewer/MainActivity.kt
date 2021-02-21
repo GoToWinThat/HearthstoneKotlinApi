@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import mobile.hearthstoneviewer.api.IApiCaller
 import mobile.hearthstoneviewer.api.repository.CardRepository
 import mobile.hearthstoneviewer.ui.hscards.CardsViewModel
+import mobile.hearthstoneviewer.ui.hsdecks.DecksViewModel
 import retrofit2.awaitResponse
 
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity()
 {
 
     private lateinit var cardsViewModel: CardsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)

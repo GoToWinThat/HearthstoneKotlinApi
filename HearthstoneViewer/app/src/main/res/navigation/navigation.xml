@@ -18,7 +18,11 @@
         android:id="@+id/navigation_favourite"
         android:name="mobile.hearthstoneviewer.ui.favourite.FavouriteFragment"
         android:label="Favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_navigation_favourite_to_cardsDetailsFragment"
+            app:destination="@id/cardsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_decks"
         android:name="mobile.hearthstoneviewer.ui.hsdecks.DecksFragment"
@@ -32,13 +36,5 @@
         <action
             android:id="@+id/action_cardsDetailsFragment_to_navigation_cards"
             app:destination="@id/navigation_cards" />
-    </fragment>
-    <fragment
-        android:id="@+id/favouriteCardsFragment"
-        android:name="mobile.hearthstoneviewer.ui.favourite.FavouriteCardsFragment"
-        android:label="FavouriteCardsFragment" >
-        <action
-            android:id="@+id/action_favouriteCardsFragment_to_cardsDetailsFragment"
-            app:destination="@id/cardsDetailsFragment" />
     </fragment>
 </navigation>

@@ -1,7 +1,6 @@
 package mobile.hearthstoneviewer.model.entities
 
 import com.google.gson.annotations.Expose
-import mobile.hearthstoneviewer.ui.hscards.CardsViewModel
 
 data class Card(
     val id: Int,

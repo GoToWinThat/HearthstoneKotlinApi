@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import mobile.hearthstoneviewer.R
 import kotlinx.android.synthetic.main.fragment_cards.*
+import mobile.hearthstoneviewer.ui.hsdecks.DecksViewModel
 
 class CardsFragment : Fragment()
 {
 
     private lateinit var cardListAdapter: CardListAdapter
+
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var cardsViewModel: CardsViewModel
 
@@ -24,6 +26,8 @@ class CardsFragment : Fragment()
 
 
         cardsViewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
+
+
         viewManager = LinearLayoutManager(requireContext())
         cardListAdapter = CardListAdapter(CardsViewModel.cardsList){
             CardsViewModel.selectedCard = it
