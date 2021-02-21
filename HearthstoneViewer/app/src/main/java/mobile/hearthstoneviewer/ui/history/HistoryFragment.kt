@@ -1,4 +1,4 @@
-package mobile.hearthstoneviewer.ui.hscards
+package mobile.hearthstoneviewer.ui.history
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,15 +10,13 @@ import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.card_history_fragment.*
 import mobile.hearthstoneviewer.R
-import kotlinx.android.synthetic.main.fragment_cards.*
-import mobile.hearthstoneviewer.ui.hsdecks.DecksViewModel
+import mobile.hearthstoneviewer.ui.hscards.CardListAdapter
+import mobile.hearthstoneviewer.ui.hscards.CardsViewModel
 
-class CardsFragment : Fragment()
-{
-
+class HistoryFragment : Fragment() {
     private lateinit var cardListAdapter: CardListAdapter
-
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var cardsViewModel: CardsViewModel
 
@@ -27,35 +25,35 @@ class CardsFragment : Fragment()
 
 
         cardsViewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
-
-
         viewManager = LinearLayoutManager(requireContext())
-        cardListAdapter = CardListAdapter(CardsViewModel.cardsList){
+        cardListAdapter = CardListAdapter(cardsViewModel.listOfCards) {
             CardsViewModel.selectedCard = it
-            view?.findNavController()?.navigate(R.id.cardsDetailsFragment) //DO POPRAWY
+            view?.findNavController()?.navigate(R.id.action_historyFragment_to_cardsDetailsFragment)
         }
 
-        CardsViewModel.cardsList.observe(viewLifecycleOwner, {
+
+        cardsViewModel.getRecentCards()
+
+        cardsViewModel.listOfCards.observe(viewLifecycleOwner, {
             cardListAdapter.notifyDataSetChanged()
         })
 
-
-
-        return inflater.inflate(R.layout.fragment_cards, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.card_history_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerViewCardsList.apply{
+        recyclerViewRecentCards.apply {
             adapter = cardListAdapter
-            layoutManager= viewManager
+            layoutManager = viewManager
         }
     }
-    companion object {
 
+    companion object {
         @JvmStatic
-        fun newInstance() = CardsFragment ()
+        fun newInstance() = HistoryFragment()
     }
 }

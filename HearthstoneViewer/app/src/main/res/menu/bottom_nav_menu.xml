@@ -14,4 +14,10 @@
         android:id="@+id/navigation_favourite"
         android:icon="@drawable/ic_baseline_favorite_24"
         android:title="Favourite"/>
+
+    <item
+        android:id="@+id/historyFragment"
+        android:title="history"
+        android:icon="@drawable/ic_baseline_history_24"
+        />
 </menu>

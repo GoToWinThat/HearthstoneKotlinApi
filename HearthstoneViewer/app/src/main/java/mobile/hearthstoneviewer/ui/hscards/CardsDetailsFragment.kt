@@ -25,8 +25,8 @@ class CardsDetailsFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
         lifecycleScope.launch {
+            viewModel.addCardToHistory(CardsViewModel.selectedCard) ////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_card_details, container, false)
     }

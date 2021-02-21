@@ -37,4 +37,13 @@
             android:id="@+id/action_cardsDetailsFragment_to_navigation_cards"
             app:destination="@id/navigation_cards" />
     </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="mobile.hearthstoneviewer.ui.history.HistoryFragment"
+        android:label="card_history_fragment"
+        tools:layout="@layout/card_history_fragment" >
+        <action
+            android:id="@+id/action_historyFragment_to_cardsDetailsFragment"
+            app:destination="@id/cardsDetailsFragment" />
+    </fragment>
 </navigation>

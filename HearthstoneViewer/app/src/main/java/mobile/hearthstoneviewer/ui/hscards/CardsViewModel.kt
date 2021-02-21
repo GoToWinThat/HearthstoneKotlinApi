@@ -12,15 +12,20 @@ import mobile.hearthstoneviewer.api.repository.DeckRepository
 import mobile.hearthstoneviewer.model.ApplicationDatabase
 import mobile.hearthstoneviewer.model.entities.*
 import mobile.hearthstoneviewer.model.repositories.FavouriteCardRepository
+import mobile.hearthstoneviewer.model.repositories.HistoryRepository
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class CardsViewModel(application: Application) : AndroidViewModel(application)
 {
 
     var listOfCards = MutableLiveData<List<Card>>()
 
+
+    private val historyRepository =
+            HistoryRepository(ApplicationDatabase.getDatabase(application).historyDao())
     private val repository : CardRepository = CardRepository(IApiCaller.getApiCaller())
    // private val repository2 : DeckRepository = DeckRepository(IApiCaller.getApiCaller())
     private val favouriteCardRepository = FavouriteCardRepository(ApplicationDatabase.getDatabase(application).favouriteCardDao())
@@ -51,6 +56,24 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
             favouriteCardRepository.add(favourite)
         }
     }
+    fun getRecentCards() {
+
+        GlobalScope.launch(Dispatchers.IO) {
+            var recentCards = CardList()
+            var history = historyRepository.getAllHistory()
+
+            history.forEach { history ->
+                run {
+                    var card =
+                            cardsList.value?.find { card -> card.id == history.cardId }
+                    card?.let { recentCards.add(it) }
+                }
+            }
+
+            listOfCards.postValue(recentCards)
+        }
+
+    }
 
     fun deleteCardFromFavourites(card: Card) {
         viewModelScope.launch {
@@ -71,6 +94,15 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
             }
             listOfCards.postValue(favouriteCards)
         }
+    }
+
+    suspend fun addCardToHistory(
+            card: Card
+    ) {
+
+        val history = History(card.id.toInt(), Date())
+        historyRepository.add(history)
+
     }
 
     //DO TESTÓW
