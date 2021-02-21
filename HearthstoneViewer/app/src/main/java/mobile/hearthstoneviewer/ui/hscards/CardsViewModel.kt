@@ -106,26 +106,21 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
 
     }
 
-    fun getCardsByName(name: String) {
+    fun getCardsByName(name: String)
+    {
         var tmpList = CardList()
-        val apiCaller = Retrofit.Builder()
-                .baseUrl(IApiCaller.baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(IApiCaller::class.java)
-        IApiCaller.instance = apiCaller
-        apiCaller
 
-        GlobalScope.launch(Dispatchers.IO) {
-            val response = apiCaller.getDrinksByName(name).awaitResponse()
-
-            if (response.isSuccessful) {
-                var data = response.body()
-                if (data != null) {
-                    //Log.d("Size", data.size.toString())
-                    listOfCards.postValue(data!!)
-                }
-            } else {
+        GlobalScope.launch(Dispatchers.IO)
+        {
+            val response = repository.getCardsByName(name).awaitResponse()
+val test2=2
+            if (response.isSuccessful)
+            {
+                val data = response.body()!!
+                listOfCards.postValue(data.cards)
+            }
+            else
+            {
                 Log.d("api-connection", "response failed")
             }
         }

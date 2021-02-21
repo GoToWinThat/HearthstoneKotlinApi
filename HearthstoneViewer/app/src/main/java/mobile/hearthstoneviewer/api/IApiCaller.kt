@@ -21,8 +21,8 @@ interface IApiCaller
     @GET("cards?$accessToken&$localization&$pageSize")
     fun getCards() : Call<CardListResponse>
 
-    @GET("cards?$accessToken&$localization&$pageSize&$sort&$textFilter")
-    fun getDrinksByName(@Query("s") name: String): Call<CardList>
+    @GET("cards?$accessToken&$localization&$pageSize&$sort")
+    fun getCardsByName(@Query("textFilter") textFilter: String): Call<CardListResponse>
 
     companion object
     {
@@ -30,7 +30,6 @@ interface IApiCaller
         private const val localization: String ="locale=pl_PL"
         private const val pageSize: String = "pageSize=1024"
         private const val sort: String = "sort=name"
-        private const val textFilter: String = "textFilter=Potwo"
         const val baseUrl = "https://us.api.blizzard.com/hearthstone/"
 
 

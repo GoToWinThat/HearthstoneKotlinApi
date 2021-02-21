@@ -90,8 +90,10 @@ class SearchByNameFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText != null) {
-                    if(newText!="") {
+                if (newText != null)
+                {
+                    if(newText!="")
+                    {
                         viewModel.getCardsByName(newText)
                         drinkListAdapter.cards = viewModel.listOfCards
                         drinkListAdapter.notifyDataSetChanged()
