@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_navigation_decks_to_deckListCardsFragment"
             app:destination="@id/deckListCardsFragment" />
+        <action
+            android:id="@+id/action_navigation_decks_to_searchDeck"
+            app:destination="@id/searchDeck" />
     </fragment>
     <fragment
         android:id="@+id/navigation_history"
@@ -80,4 +83,13 @@
         android:name="mobile.hearthstoneviewer.ui.search.SearchResult"
         android:label="fragment_search_result"
         tools:layout="@layout/fragment_search_result" />
+    <fragment
+        android:id="@+id/searchDeck"
+        android:name="mobile.hearthstoneviewer.ui.hsdecks.SearchDeck"
+        android:label="fragment_search_deck"
+        tools:layout="@layout/fragment_search_deck" >
+        <action
+            android:id="@+id/action_searchDeck_to_deckListCardsFragment"
+            app:destination="@id/deckListCardsFragment" />
+    </fragment>
 </navigation>

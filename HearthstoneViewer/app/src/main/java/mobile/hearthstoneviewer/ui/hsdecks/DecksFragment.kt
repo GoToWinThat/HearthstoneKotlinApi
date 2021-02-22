@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_cards.*
 import kotlinx.android.synthetic.main.fragment_decks.*
+import kotlinx.android.synthetic.main.fragment_search_by_params.*
 import mobile.hearthstoneviewer.R
 import mobile.hearthstoneviewer.ui.favourite.FavouriteViewModel
 import mobile.hearthstoneviewer.ui.hscards.CardListAdapter
@@ -22,7 +23,6 @@ import mobile.hearthstoneviewer.ui.hscards.CardsViewModel
 class DecksFragment : Fragment() {
 
     private lateinit var deckListAdapter: DeckListAdapter
-
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var decksViewModel: DecksViewModel
 
@@ -31,7 +31,7 @@ class DecksFragment : Fragment() {
 
 
         decksViewModel = ViewModelProvider(this).get(DecksViewModel::class.java)
-        //decksViewModel.getCards()
+
 
 
         viewManager = LinearLayoutManager(requireContext())
@@ -56,6 +56,10 @@ class DecksFragment : Fragment() {
         recyclerViewDecksList.apply{
             adapter = deckListAdapter
             layoutManager= viewManager
+        }
+
+        buttonSearchDecks.setOnClickListener {
+            it.findNavController().navigate(R.id.action_navigation_decks_to_searchDeck)
         }
     }
     companion object {

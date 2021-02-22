@@ -34,6 +34,6 @@ class MainActivity : AppCompatActivity()
         cardsViewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
         cardsViewModel.getCards()
         decksViewModel= ViewModelProvider(this).get(DecksViewModel::class.java)
-        decksViewModel.getCards()
+        decksViewModel.getDecks()
     }
 }

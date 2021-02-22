@@ -40,7 +40,7 @@ class DecksViewModel (application: Application) : AndroidViewModel(application)
 
     private val repository : DeckRepository = DeckRepository(IApiCaller.getApiCaller())
     private val favouriteCardRepository = FavouriteCardRepository(ApplicationDatabase.getDatabase(application).favouriteCardDao())
-    fun getCards()
+    fun getDecks()
     {
         viewModelScope.launch(Dispatchers.IO)
         {
@@ -59,9 +59,26 @@ class DecksViewModel (application: Application) : AndroidViewModel(application)
 
         }
     }
+    fun getDeck(code:String)
+    {
+        viewModelScope.launch(Dispatchers.IO)
+        {
+            var decks = mutableListOf<Deck>()
+
+            val response = repository.getDeck(code).awaitResponse()
+            if (response.isSuccessful)
+            {
+                    val data = response.body()!!
+                    decks.add(data)
+            }
+            searchedDeck.postValue(decks)
+
+        }
+    }
     companion object
     {
         lateinit var selectedDeck: Deck
         var allDecks = MutableLiveData<List<Deck>>()
+        var searchedDeck = MutableLiveData<List<Deck>>()
     }
 }

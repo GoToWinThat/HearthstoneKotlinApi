@@ -5,31 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.hsdecks.DecksFragment" >
+    tools:context=".ui.hsdecks.DeckListCardsFragment" >
 
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDecksList"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/smokewhite"
-        android:overScrollMode="ifContentScrolls"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textViewDeckCards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/deck_cards"
+        android:textColor="@color/yellow"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonSearchDecks"
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="Szukaj"
-        android:textColor="#000000"
-        app:cornerRadius="12dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDeckCardsList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:overScrollMode="ifContentScrolls"
+        android:background="@color/smokewhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDeckCards" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
