@@ -19,9 +19,9 @@ class DecksViewModel (application: Application) : AndroidViewModel(application)
 {
     var listOfDecks = MutableLiveData<List<Deck>>()
     val codes = listOf<String>("AAECAZ8FCIetA/y4A5XNA4/OA8PRA5vYA/zeA73hAwunCJupA/u4A/O7A/7RA4fUA/7bA/neA/TfA5HkA5LkAwA=",
-    "AAECAR8eqAK1A8cDhwTbCf4M/KMDpqUD+a4D+68D/K8Dh7ADorkDpLkD/7oD174D3r4D3MwDm80Dos4DgtADxtEDudID9tYD6OED8uED8+EDhOIDj+MDyuMDAAA=",
-    "AAECAaIHAtnRA6rSAw60AcsD7gaIB+IHubgDz7kDqssDiNADi9ADitQD1dQD99QDgeQDAA==",
-    "AAECAZ8FBJuuA/y4A4TBA8PRAw3cA5yuA8q4A/24A+q5A+u5A+y5A8rBA57NA7/RA8DRA8rRA+DRAwA=")
+            "AAECAR8eqAK1A8cDhwTbCf4M/KMDpqUD+a4D+68D/K8Dh7ADorkDpLkD/7oD174D3r4D3MwDm80Dos4DgtADxtEDudID9tYD6OED8uED8+EDhOIDj+MDyuMDAAA=",
+            "AAECAaIHAtnRA6rSAw60AcsD7gaIB+IHubgDz7kDqssDiNADi9ADitQD1dQD99QDgeQDAA==",
+            "AAECAZ8FBJuuA/y4A4TBA8PRAw3cA5yuA8q4A/24A+q5A+u5A+y5A8rBA57NA7/RA8DRA8rRA+DRAwA=")
 
     private val repository : DeckRepository = DeckRepository(IApiCaller.getApiCaller())
     private val favouriteCardRepository = FavouriteCardRepository(ApplicationDatabase.getDatabase(application).favouriteCardDao())
@@ -40,11 +40,13 @@ class DecksViewModel (application: Application) : AndroidViewModel(application)
                 }
             }
             listOfDecks.postValue(decks)
+            allDecks.postValue(decks)
 
         }
     }
     companion object
     {
         lateinit var selectedDeck: Deck
+        var allDecks = MutableLiveData<List<Deck>>()
     }
 }

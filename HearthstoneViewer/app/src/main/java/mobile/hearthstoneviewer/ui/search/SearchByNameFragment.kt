@@ -98,7 +98,8 @@ class SearchByNameFragment : Fragment() {
                         drinkListAdapter.cards = viewModel.listOfCards
                         drinkListAdapter.notifyDataSetChanged()
                     }
-                    else{
+                    else
+                    {
                         drinkListAdapter.cards = CardsViewModel.cardsList
                         drinkListAdapter.notifyDataSetChanged()
 //                        viewModel.listOfDrinks.value!!.clear()

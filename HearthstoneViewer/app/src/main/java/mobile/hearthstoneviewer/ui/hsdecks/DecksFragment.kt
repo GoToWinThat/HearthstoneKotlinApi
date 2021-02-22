@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,7 +37,7 @@ class DecksFragment : Fragment() {
         viewManager = LinearLayoutManager(requireContext())
         deckListAdapter = DeckListAdapter(decksViewModel.listOfDecks){
             DecksViewModel.selectedDeck = it
-            //view?.findNavController()?.navigate(R.id.navigation_decks)
+            view?.findNavController()?.navigate(R.id.action_navigation_decks_to_deckListCardsFragment)
         }
 
         decksViewModel.listOfDecks.observe(viewLifecycleOwner, {
