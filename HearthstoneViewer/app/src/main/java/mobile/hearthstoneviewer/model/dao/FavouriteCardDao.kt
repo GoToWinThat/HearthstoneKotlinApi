@@ -4,7 +4,8 @@ import androidx.room.*
 import mobile.hearthstoneviewer.model.entities.FavouriteCard
 
 @Dao
-interface FavouriteCardDao {
+interface FavouriteCardDao
+{
     @Query("SELECT * FROM favourite_card")
     fun getAll(): List<FavouriteCard>
 

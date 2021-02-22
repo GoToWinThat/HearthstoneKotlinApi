@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchByNameFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <SearchView
         android:id="@+id/searchViewDrink"

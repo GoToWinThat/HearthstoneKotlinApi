@@ -7,7 +7,8 @@ import androidx.room.Query
 import mobile.hearthstoneviewer.model.entities.History
 
 @Dao
-interface HistoryDao {
+interface HistoryDao
+{
 
     @Query("SELECT * FROM history_table order by date desc ")
     fun getAll(): List<History>

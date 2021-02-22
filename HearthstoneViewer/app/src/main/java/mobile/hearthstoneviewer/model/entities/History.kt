@@ -6,9 +6,7 @@ import androidx.room.TypeConverters
 import mobile.hearthstoneviewer.converters.DateConverter
 import java.util.*
 
-@Entity(
-        tableName = "history_table",
-)
+@Entity(tableName = "history_table")
 @TypeConverters(DateConverter::class)
 data class History (
         @PrimaryKey()

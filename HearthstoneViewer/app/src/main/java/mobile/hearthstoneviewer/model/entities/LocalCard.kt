@@ -3,9 +3,7 @@ package mobile.hearthstoneviewer.model.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(
-    tableName = "card_table"
-)
+@Entity(tableName = "card_table")
 data class LocalCard (
     @PrimaryKey(autoGenerate = true)
     val id: Int,

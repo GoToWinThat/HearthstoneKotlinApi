@@ -17,6 +17,7 @@ import mobile.hearthstoneviewer.model.repositories.HistoryRepository
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Query
 import java.util.*
 
 class CardsViewModel(application: Application) : AndroidViewModel(application)
@@ -28,7 +29,6 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
     private val historyRepository =
             HistoryRepository(ApplicationDatabase.getDatabase(application).historyDao())
     private val repository : CardRepository = CardRepository(IApiCaller.getApiCaller())
-   // private val repository2 : DeckRepository = DeckRepository(IApiCaller.getApiCaller())
     private val favouriteCardRepository = FavouriteCardRepository(ApplicationDatabase.getDatabase(application).favouriteCardDao())
     fun getCards()
     {
@@ -113,7 +113,6 @@ class CardsViewModel(application: Application) : AndroidViewModel(application)
         GlobalScope.launch(Dispatchers.IO)
         {
             val response = repository.getCardsByName(name).awaitResponse()
-val test2=2
             if (response.isSuccessful)
             {
                 val data = response.body()!!
@@ -125,22 +124,41 @@ val test2=2
             }
         }
     }
-    //DO TESTÓW
-    fun getCardsById(id: Int, doneCallback: ((d: Card) -> Unit)) {
+    fun saveParams( klasa: String, rarity: String, type: String, mana: String, health: String, attack: String)
+    {
+        klasac=klasa
+        rarityc=rarity
+        typec=type
+        manac=mana
+        healthc=health
+        attackc=attack
+    }
+    fun getCardsByParams()
+    {
+        viewModelScope.launch(Dispatchers.IO)
+        {
+            val response = repository.getCardByParams(klasac, rarityc, typec, manac, healthc, attackc).awaitResponse()
 
-        val apiCaller = Retrofit.Builder()
-            .baseUrl(IApiCaller.baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(IApiCaller::class.java)
-        IApiCaller.instance = apiCaller
-        apiCaller
-
+            if (response.isSuccessful)
+            {
+                val data = response.body()!!
+                searchCardsList.postValue(data.cards)
+            }
         }
+
+    }
+
     companion object
     {
         lateinit var selectedCard: Card
         var cardsList = MutableLiveData<List<Card>>()
-        lateinit var selectedLocalCard: LocalCard}
-
+        var klasac: String=""
+        var rarityc: String=""
+        var typec: String=""
+        var manac: String=""
+        var healthc: String=""
+        var attackc: String=""
+        var searchCardsList = MutableLiveData<List<Card>>()
+        lateinit var selectedLocalCard: LocalCard
+    }
 }

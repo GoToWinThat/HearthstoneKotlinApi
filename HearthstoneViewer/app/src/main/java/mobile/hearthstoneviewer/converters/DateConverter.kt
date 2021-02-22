@@ -3,9 +3,11 @@ package mobile.hearthstoneviewer.converters
 import androidx.room.TypeConverter
 import java.util.*
 
-class DateConverter {
+class DateConverter
+{
     @TypeConverter
-    fun fromTimestamp(value: Long?): Date? {
+    fun fromTimestamp(value: Long?): Date?
+    {
         return value?.let { Date(it) }
     }
 

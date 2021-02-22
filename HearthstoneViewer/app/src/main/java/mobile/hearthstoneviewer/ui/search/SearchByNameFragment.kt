@@ -59,37 +59,22 @@ class SearchByNameFragment : Fragment() {
             layoutManager=viewManager
         }
 
-//        recyclerViewDrinkListSearch.setIndexBarColor(R.color.kivi)
-//        recyclerViewDrinkListSearch.setIndexBarCornerRadius(10)
-//        recyclerViewDrinkListSearch.setIndexBarTransparentValue(0.4F)
-//        recyclerViewDrinkListSearch.setIndexBarVisibility(false)
-//
-//        val typeface = ResourcesCompat.getFont(requireContext(), R.font.nunito_light);
-//        recyclerViewDrinkListSearch.setTypeface(typeface)
-//
-//        recyclerViewDrinkListSearch.addOnScrollListener(object: RecyclerView.OnScrollListener(){
-//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//                super.onScrollStateChanged(recyclerView, newState)
-//                if(newState == RecyclerView.SCROLL_STATE_DRAGGING){
-//                    recyclerViewDrinkListSearch.setIndexBarVisibility(true)
-//                }
-//            }
-//
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//
-//            } TODO: Make it work properly
-//        })
 
 
-        searchViewDrink.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
-            override fun onQueryTextSubmit(query: String?): Boolean {
+        searchViewDrink.setOnQueryTextListener(
+
+        object : SearchView.OnQueryTextListener
+        {
+
+            override fun onQueryTextSubmit(query: String?): Boolean
+            {
                 searchViewDrink.clearFocus()
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(newText: String?): Boolean
+            {
                 if (newText != null)
                 {
                     if(newText!="")
@@ -100,15 +85,18 @@ class SearchByNameFragment : Fragment() {
                     }
                     else
                     {
-                        drinkListAdapter.cards = CardsViewModel.cardsList
+                       drinkListAdapter.cards = CardsViewModel.cardsList
                         drinkListAdapter.notifyDataSetChanged()
-//                        viewModel.listOfDrinks.value!!.clear()
                     }
                     return true
-                } else return false
+                }
+                else
+                {
+                    return false
+                }
+
             }
         })
-
     }
 
     companion object {

@@ -18,24 +18,25 @@ class CardsDetailsFragment : Fragment() {
 
     private lateinit var viewModel: CardsViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    {
 
         viewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
         lifecycleScope.launch {
-            viewModel.addCardToHistory(CardsViewModel.selectedCard) ////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            viewModel.addCardToHistory(CardsViewModel.selectedCard)
         }
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_card_details, container, false)
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
         super.onViewCreated(view, savedInstanceState)
 
-        var classname = "Druid";
+        //Ustawienie danych karty
+
+        var classname = "";
         when(CardsViewModel.selectedCard.classId)
         {
             2 -> classname = "Druid"
@@ -50,6 +51,7 @@ class CardsDetailsFragment : Fragment() {
             14 -> classname = "Łowca Demonów"
 
         }
+
         var cardRarity = "Rzadka"
         when (CardsViewModel.selectedCard.rarityId)
         {
@@ -59,6 +61,7 @@ class CardsDetailsFragment : Fragment() {
             4 -> cardRarity = "Epicka"
             5 -> cardRarity = "Legendarna"
         }
+
         var cardType = "Broń"
         when(CardsViewModel.selectedCard.cardTypeId)
         {
@@ -67,8 +70,10 @@ class CardsDetailsFragment : Fragment() {
             5 -> cardType = "Czar"
         }
 
+        //Zapisanie danych do widoku
+
         textViewCategory.text = CardsViewModel.selectedCard.name
-        textViewClassIdName.text = "Klasa postaci: " + classname +
+        textViewInfo.text = "Klasa postaci: " + classname +
                 "\nTyp karty: "  +cardType +
                 "\nRzadkość karty: "  +cardRarity +
                 "\nŻycie: " + CardsViewModel.selectedCard.health +
@@ -76,16 +81,20 @@ class CardsDetailsFragment : Fragment() {
                 "\nKoszt many: " + CardsViewModel.selectedCard.manaCost
 
 
-        Picasso.get().load(CardsViewModel.selectedCard.image).resize(600, 700)
+        //Załadowanie obrazka
+        Picasso.get().load(CardsViewModel.selectedCard.image).resize(562, 777)
             .into(imageView)
 
-
-        lifecycleScope.launch {
-            if (viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedCard)) {
+        //Przyciski
+        lifecycleScope.launch{
+            if (viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedCard))
+            {
                 buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_24_kivi)
                 CardsViewModel.selectedCard.favorite = true
                 textViewAddToFavorites.text = "Usuń z ulubionych"
-            } else {
+            }
+            else
+            {
                 buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24_kici)
                 CardsViewModel.selectedCard.favorite = false
                 textViewAddToFavorites.text = "Dodaj do ulubionych"
@@ -95,7 +104,8 @@ class CardsDetailsFragment : Fragment() {
 
         buttonAddToFavorites.setOnClickListener {
             lifecycleScope.launch {
-                if (viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedCard)) {
+                if (viewModel.checkIfDrinkIsFavourite(CardsViewModel.selectedCard))
+                {
                     buttonAddToFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24_kici)
                     CardsViewModel.selectedCard.favorite = false
                     textViewAddToFavorites.text = "Dodaj do ulubionych"
@@ -115,7 +125,6 @@ class CardsDetailsFragment : Fragment() {
             it.findNavController().navigate(R.id.action_cardsDetailsFragment_to_navigation_cards)
         }
     }
-
     companion object
     {
         @JvmStatic

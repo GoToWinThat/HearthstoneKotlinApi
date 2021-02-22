@@ -34,6 +34,8 @@ class SearchFragment : Fragment() {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             if (position == 0)
                 tab.text = "BY NAME"
+            else if(position==1)
+                tab.text="BY PARAMS"
         }.attach()
     }
 
@@ -53,6 +55,8 @@ class CollectionAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
         if(position == 0)
             fragment = SearchByNameFragment.newInstance()
+        else
+            fragment = SearchByParams.newInstance()
         return fragment
     }
 }

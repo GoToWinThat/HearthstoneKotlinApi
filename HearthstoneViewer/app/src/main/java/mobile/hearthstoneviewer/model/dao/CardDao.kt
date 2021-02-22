@@ -5,10 +5,10 @@ import androidx.room.*
 import mobile.hearthstoneviewer.model.entities.LocalCard
 
 @Dao
-interface CardDao {
+interface CardDao
+{
     @Query("SELECT * FROM CARD_TABLE")
     fun getAll(): LiveData<List<LocalCard>>
-
     @Insert
     suspend fun insert(card: LocalCard):Long
 

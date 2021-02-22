@@ -10,97 +10,92 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
-
+        <!--Menu-->
         <ImageButton
             android:id="@+id/buttonBack"
             android:layout_width="35dp"
             android:layout_height="41dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="#00FFFFFF"
             android:src="@drawable/ic_baseline_arrow_back_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!--Karta-->
+
         <TextView
-            android:id="@+id/textViewDrinkNameD"
+            android:id="@+id/textViewCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonBack"
+            app:layout_constraintStart_toEndOf="@+id/buttonBack"
+            app:layout_constraintTop_toTopOf="@+id/buttonBack"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <!--Ulubione-->
+
+        <!--Karta-->
+
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="#FFFFFF"
-            android:textSize="27sp"
+            android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/buttonBack"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonBack" />
 
         <ImageButton
             android:id="@+id/buttonAddToFavorites"
             android:layout_width="28dp"
             android:layout_height="25dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="104dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="#00FFFFFF"
             android:src="@drawable/ic_baseline_favorite_border_24_kici"
-            app:layout_constraintStart_toStartOf="@+id/textViewDrinkNameD"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDrinkNameD" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
             android:id="@+id/textViewAddToFavorites"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:text="Dodaj do ulubionych"
+            android:layout_width="156dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="28dp"
+            android:text="@string/add_to_favourites"
             android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonAddToFavorites"
             app:layout_constraintStart_toEndOf="@+id/buttonAddToFavorites"
-            app:layout_constraintTop_toTopOf="@+id/buttonAddToFavorites" />
+            app:layout_constraintTop_toTopOf="@+id/buttonAddToFavorites"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Właściwości karty"
-            android:textColor="#FFFFFF"
+            android:layout_marginTop="32dp"
+            android:text="@string/card_info_label"
+            android:textColor="@color/yellow"
             android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="@+id/textViewCategory"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCategory" />
+            app:layout_constraintStart_toStartOf="@+id/buttonBack"
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddToFavorites" />
 
         <TextView
-            android:id="@+id/textViewClassIdName"
+            android:id="@+id/textViewInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="@+id/buttonAddToFavorites"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAddToFavorites" />
-
-
-
-        <TextView
-            android:id="@+id/textViewCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Klasa"
-            android:textColor="#FFFFFF"
-            android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
+            app:layout_constraintStart_toStartOf="@+id/textViewLabel"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLabel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

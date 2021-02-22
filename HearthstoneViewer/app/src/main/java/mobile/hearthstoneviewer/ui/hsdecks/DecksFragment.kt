@@ -31,13 +31,13 @@ class DecksFragment : Fragment() {
 
 
         decksViewModel = ViewModelProvider(this).get(DecksViewModel::class.java)
-        decksViewModel.getCards()
+        //decksViewModel.getCards()
 
 
         viewManager = LinearLayoutManager(requireContext())
-        deckListAdapter = DeckListAdapter(decksViewModel.listOfDecks){
+        deckListAdapter = DeckListAdapter(DecksViewModel.allDecks){
             DecksViewModel.selectedDeck = it
-            view?.findNavController()?.navigate(R.id.action_navigation_decks_to_deckListCardsFragment)
+          view?.findNavController()?.navigate(R.id.action_navigation_decks_to_deckListCardsFragment)
         }
 
         decksViewModel.listOfDecks.observe(viewLifecycleOwner, {

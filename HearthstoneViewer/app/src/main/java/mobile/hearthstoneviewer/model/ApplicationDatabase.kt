@@ -19,22 +19,27 @@ import mobile.hearthstoneviewer.model.entities.LocalCard
     version = 4,
     exportSchema = false
 )
-abstract class ApplicationDatabase : RoomDatabase() {
+abstract class ApplicationDatabase : RoomDatabase()
+{
     abstract fun cardDao(): CardDao
     abstract fun favouriteCardDao(): FavouriteCardDao
     abstract fun historyDao(): HistoryDao
 
-    companion object {
+    companion object
+    {
         @Volatile
         private var INSTANCE: ApplicationDatabase? = null
 
-        fun getDatabase(context: Context): ApplicationDatabase {
+        fun getDatabase(context: Context): ApplicationDatabase
+        {
             val tempInstance = INSTANCE
 
-            if (tempInstance != null) {
+            if (tempInstance != null)
+            {
                 return tempInstance
             } else {
-                synchronized(this) {
+                synchronized(this)
+                {
                     val instance = Room.databaseBuilder(
                         context.applicationContext,
                         ApplicationDatabase::class.java,
@@ -44,7 +49,6 @@ abstract class ApplicationDatabase : RoomDatabase() {
                     return instance
                 }
             }
-
         }
     }
 }

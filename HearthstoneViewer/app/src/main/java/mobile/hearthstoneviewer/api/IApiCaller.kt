@@ -13,7 +13,7 @@ import java.util.jar.Attributes
 
 interface IApiCaller
 {
-    //CARDS
+    //DECKS
     @GET("deck?$localization&$accessToken")
     fun getDeck(@Query("code") code: String): Call<Deck>
 
@@ -23,6 +23,15 @@ interface IApiCaller
 
     @GET("cards?$accessToken&$localization&$pageSize&$sort")
     fun getCardsByName(@Query("textFilter") textFilter: String): Call<CardListResponse>
+
+    @GET("cards?$accessToken&$localization")
+    fun getCardsByParams(@Query("class") klasa: String,
+                         @Query("rarity") rarity: String,
+                         @Query("type") type: String,
+                         @Query("mana") mana: String,
+                         @Query("health") health: String,
+                         @Query("attack") attack: String,
+    ) : Call<CardListResponse>
 
     companion object
     {
