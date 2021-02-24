@@ -8,24 +8,63 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_cards.*
+import kotlinx.android.synthetic.main.fragment_decks.*
+import kotlinx.android.synthetic.main.fragment_search_by_params.*
 import mobile.hearthstoneviewer.R
 import mobile.hearthstoneviewer.ui.favourite.FavouriteViewModel
+import mobile.hearthstoneviewer.ui.hscards.CardListAdapter
+import mobile.hearthstoneviewer.ui.hscards.CardsFragment
+import mobile.hearthstoneviewer.ui.hscards.CardsViewModel
 
 class DecksFragment : Fragment() {
 
+    private lateinit var deckListAdapter: DeckListAdapter
+    private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var decksViewModel: DecksViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
 
+
         decksViewModel = ViewModelProvider(this).get(DecksViewModel::class.java)
 
-        val view = inflater.inflate(R.layout.fragment_decks, container, false)
 
-        val textView: TextView = view.findViewById(R.id.text_decks)
 
-        decksViewModel.text.observe(viewLifecycleOwner, Observer { textView.text = it })
+        viewManager = LinearLayoutManager(requireContext())
+        deckListAdapter = DeckListAdapter(DecksViewModel.allDecks){
+            DecksViewModel.selectedDeck = it
+          view?.findNavController()?.navigate(R.id.action_navigation_decks_to_deckListCardsFragment)
+        }
 
-        return view
+        decksViewModel.listOfDecks.observe(viewLifecycleOwner, {
+            deckListAdapter.notifyDataSetChanged()
+        })
+
+
+
+        return inflater.inflate(R.layout.fragment_decks, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerViewDecksList.apply{
+            adapter = deckListAdapter
+            layoutManager= viewManager
+        }
+
+        buttonSearchDecks.setOnClickListener {
+            it.findNavController().navigate(R.id.action_navigation_decks_to_searchDeck)
+        }
+    }
+    companion object {
+
+        @JvmStatic
+        fun newInstance() = DecksFragment ()
     }
 }

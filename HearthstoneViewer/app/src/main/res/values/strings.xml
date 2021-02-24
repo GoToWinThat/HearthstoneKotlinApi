@@ -1,3 +1,77 @@
 <resources>
     <string name="app_name">HearthstoneViewer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="card_info_label">Właściwości karty</string>
+    <string name="add_to_favourites">Dodaj do ulubionych</string>
+    <string name="card_history">Historia kart</string>
+    <string name="favourite">Ulubione</string>
+    <string name="deck_cards">Karty w talii</string>
+
+
+    <string-array name="card_type">
+        <item>minion</item>
+        <item>spell</item>
+        <item>weapon</item>
+    </string-array>
+    <string-array name="card_class">
+        <item>mage</item>
+        <item>druid</item>
+        <item>hunter</item>
+        <item>paladin</item>
+        <item>priest</item>
+        <item>roque</item>
+        <item>shaman</item>
+        <item>warrior</item>
+        <item>warlock</item>
+        <item>demon hunter</item>
+    </string-array>
+    <string-array name="card_rarity">
+        <item>common</item>
+        <item>rare</item>
+        <item>epic</item>
+        <item>legendary</item>
+    </string-array>
+    <string-array name="card_mana">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5n</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="card_attack">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5n</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="card_health">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5n</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
 </resources>

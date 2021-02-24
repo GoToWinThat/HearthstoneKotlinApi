@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import mobile.hearthstoneviewer.api.IApiCaller
 import mobile.hearthstoneviewer.api.repository.CardRepository
 import mobile.hearthstoneviewer.ui.hscards.CardsViewModel
+import mobile.hearthstoneviewer.ui.hsdecks.DecksViewModel
 import retrofit2.awaitResponse
 
 
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity()
 {
 
     private lateinit var cardsViewModel: CardsViewModel
+    private lateinit var decksViewModel: DecksViewModel
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -26,17 +29,11 @@ class MainActivity : AppCompatActivity()
         val navView: BottomNavigationView = findViewById(R.id.bottom_nav)
         val navController = findNavController(R.id.nav_host_fragment)
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration =
-            AppBarConfiguration(
-                            setOf(
-                                R.id.navigation_cards, R.id.navigation_decks, R.id.navigation_favourite))
-
-        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         cardsViewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
         cardsViewModel.getCards()
+        decksViewModel= ViewModelProvider(this).get(DecksViewModel::class.java)
+        decksViewModel.getDecks()
     }
 }
