@@ -35,7 +35,7 @@ interface IApiCaller
 
     companion object
     {
-        private const val accessToken: String = "access_token=USNNU2f92AUfVGztY8njhZB7kK8S5TSdtt"
+        private const val accessToken: String = "access_token=US8lAFpVKT3HvqXLygYsUXCTtvpT5QFpGI"
         private const val localization: String ="locale=pl_PL"
         private const val pageSize: String = "pageSize=1024"
         private const val sort: String = "sort=name"
