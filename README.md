@@ -6,19 +6,17 @@
     * [Screenshotss](#screenshots)
 * [Technologies and libraries](#technologies-and-libraries)
 * [Getting Started](#getting-started)
-    * [Prerequisites](#prerequisites)
-    * [Installation](#installation)
-* [Usage](#usage)
 * [Features](#features)
 * [Status](#status)
 * [License](#license)
-* [Contact](#contact)
 
 ## General info
 Mobile app in which user can watch all cards from the game, see some top rated deck and search them using offical Blizzard Game Api
 
-### Screecshots
-<img src="/screenshots/Logging.png" alt="First screenshot"> <img src="/screenshots/Board.png" alt="Second screenshot">
+### Screenshots
+<img src="/screenshots/Cards.png" alt="First screenshot"> <img src="/screenshots/CardView.png" alt="Second screenshot">
+<img src="/screenshots/Searching.png" alt="Third screenshot">
+
 ## Technologies and libraries
 * Kotlin
 * Picasso
